@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The GitPeek App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>The GitPeek App</h1>
+    </header>
+<form id="form">
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for a Github User" />
+        <i class="fas fa-search search-icon"></i>
+        <div id="loadingSpinner" class="spinner" hidden></div>
+    </div>
+</form>
+
+    <main id="main"></main>
+    <div id="recentUsers">Recent Users:</div>
+    <button onclick="navigateToAbout()" class="about-btn">About</button>
+
+</body>
+</html>
