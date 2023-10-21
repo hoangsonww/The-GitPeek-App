@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@google-cloud/dialogflow": "^6.2.0"
+  }
+}

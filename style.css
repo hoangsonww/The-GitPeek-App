@@ -141,6 +141,7 @@ input:focus {
     font-size: 1rem;
     margin-top: 1rem;
     transition: background-color 0.3s;
+    margin-bottom: 20px;
 }
 
 .about-btn:hover {
@@ -165,7 +166,7 @@ input:focus {
     background-color: #4c2885;
 }
 
-#recentUsers {
+#recentUsers, #favoritesContainer {
     background-color: #4c2885;
     background-image: linear-gradient(315deg, #4c2885 0%, #1188ac 100%);
     border-radius: 20px;
@@ -181,7 +182,7 @@ input:focus {
     color: white;
 }
 
-#recentUsers a {
+#recentUsers a, #favoritesContainer a {
     color: #eee;
     margin: 0 0.5rem;
     padding: 0.25rem 0.5rem;
@@ -190,7 +191,7 @@ input:focus {
     border-radius: 5px;
 }
 
-#recentUsers a:hover {
+#recentUsers a:hover, #favoritesContainer a:hover {
     background-color: #2a2a72;
     color: #fff;
 }
@@ -232,3 +233,79 @@ input:focus {
     background-color: #1188ac;
     background-image: linear-gradient(315deg, #1188ac 0%, #4c2885 100%);
 }
+
+#chatbotContainer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 300px;
+    max-height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(0, 0, 0, 0.1);
+    background-color: #4c2885;
+    overflow: hidden;
+}
+
+#chatbotHeader {
+    background-color: #1188ac;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+#chatbotBody {
+    overflow-y: auto;
+    max-height: 300px;
+    padding: 10px;
+}
+
+#chatbotInput {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #1188ac;
+    color: white;
+    background-color: #4c2885;
+}
+
+/* Style for Add to Favorites button */
+button {
+    background-color: #4c2885;
+    background-image: linear-gradient(315deg, #4c2885 0%, #1188ac 100%);
+    border: none;
+    border-radius: 20px;
+    color: #eee;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1188ac;
+    background-image: linear-gradient(315deg, #1188ac 0%, #4c2885 100%);
+}
+
+/* Style for Remove and View buttons inside favorites container */
+#favoritesContainer button {
+    background-color: #2a2a72;
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#favoritesContainer button:hover {
+    background-color: #4c2885;
+}
+
+/* Additional style to space out the user favorites */
+#favoritesContainer div {
+    margin-bottom: 10px;
+}
+
