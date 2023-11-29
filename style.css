@@ -266,6 +266,7 @@ input:focus {
     border-top: 1px solid #1188ac;
     color: white;
     background-color: #4c2885;
+    margin-bottom: -1px;
 }
 
 /* Style for Add to Favorites button */
@@ -302,10 +303,5 @@ button:hover {
 
 #favoritesContainer button:hover {
     background-color: #4c2885;
-}
-
-/* Additional style to space out the user favorites */
-#favoritesContainer div {
-    margin-bottom: 10px;
 }
 
