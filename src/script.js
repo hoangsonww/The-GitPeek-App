@@ -243,22 +243,13 @@ favoritesContainer.innerHTML = '<h3>Your Favorites:</h3>';
 document.body.insertBefore(favoritesContainer, recentUsers.nextSibling);
 
 function getRandomUser() {
-    const randomNames = ["john", "jane", "james", "emma", "liam", "olivia", "david", "nate"];
-    const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
+    const knownUsers = ["octocat", "torvalds", "mojombo", "defunkt", "pjhyett", "wycats", "ezmobius", "ivey", "vanpelt"];
+    const randomIndex = Math.floor(Math.random() * knownUsers.length);
+    const randomUser = knownUsers[randomIndex];
 
-    fetch(APIURL + randomName)
-        .then(response => response.json())
-        .then(data => {
-            if (data && !data.message) {
-                getUser(data.login);
-            } else {
-                getRandomUser();
-            }
-        })
-        .catch(() => {
-            displayNotFound();
-        });
+    getUser(randomUser);
 }
+
 
 function saveToFavorites(username) {
     let favorites = JSON.parse(localStorage.getItem("favoriteUsers")) || [];
