@@ -269,7 +269,6 @@ input:focus {
     margin-bottom: -1px;
 }
 
-/* Style for Add to Favorites button */
 button {
     background-color: #4c2885;
     background-image: linear-gradient(315deg, #4c2885 0%, #1188ac 100%);
@@ -289,7 +288,6 @@ button:hover {
     background-image: linear-gradient(315deg, #1188ac 0%, #4c2885 100%);
 }
 
-/* Style for Remove and View buttons inside favorites container */
 #favoritesContainer button {
     background-color: #2a2a72;
     border-radius: 5px;
@@ -308,5 +306,38 @@ button:hover {
 @media (max-width: 750px) {
     #chatbotContainer {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    #form {
+        width: 100%;
+    }
+
+    .search-container input, #chatbotInput {
+        width: 80%;
+        margin: 0.5rem;
+        padding: 0.8rem;
+    }
+
+    .card, #recentUsers, #favoritesContainer {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .user-info ul {
+        flex-direction: column;
+    }
+
+    .about-btn, .back-btn, button {
+        padding: 0.5rem 1rem;
+    }
+
+    body {
+        padding: 0 10px;
     }
 }

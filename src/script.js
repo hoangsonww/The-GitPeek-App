@@ -24,7 +24,6 @@ async function getUser(username) {
 }
 
 async function getRepos(username) {
-    // Fetch up to 100 repositories, which increases the chance to include the most popular ones
     const resp = await fetch(APIURL + username + "/repos?per_page=100&sort=created");
     const respData = await resp.json();
 
@@ -147,7 +146,7 @@ form.addEventListener("submit", (e) => {
 
 function elizaResponse(message) {
     const lowerMessage = message.toLowerCase();
-    if (lowerMessage.includes("hello") || lowerMessage.includes("hi")) {
+    if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
         return "Hello! How can I assist you with GitHub profiles today?";
     } else if (lowerMessage.includes("how are you")) {
         return "I'm just lines of code, so I don't have feelings, but I'm here and ready to assist you!";
@@ -194,7 +193,7 @@ function elizaResponse(message) {
     } else if (lowerMessage.includes("open source")) {
         return "Yes, GitHub is a platform that champions open-source projects. You can search for any user and see their contributions!";
     } else if (lowerMessage.includes("your creator")) {
-        return "I was developed by the creators of this app. They used JavaScript to bring me to life!";
+        return "I was developed by Son Nguyen of this app. He used JavaScript to bring me to life!";
     } else if (lowerMessage.includes("favorite color")) {
         return "I don't have preferences like humans do, but I've been designed with a theme of purples and blues.";
     } else if (lowerMessage.includes("fun fact")) {
@@ -289,9 +288,9 @@ function displayFavorites() {
         };
 
         container.appendChild(userLink);
-        container.appendChild(document.createTextNode(' ')); // for spacing
+        container.appendChild(document.createTextNode(' '));
         container.appendChild(removeBtn);
-        container.appendChild(document.createElement('br')); // for a new line
+        container.appendChild(document.createElement('br'));
     });
 }
 
