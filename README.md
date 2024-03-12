@@ -35,6 +35,10 @@ The GitPeek App is a sleek, user-friendly web application designed to provide qu
 6. **User Not Found**
    - If the app cannot find the entered username, it will display a "User not found" message with a button to return to the main page.
 
+## GitHub API Note
+
+This app uses the GitHub API to fetch user data. The API has a rate limit of 60 requests per hour for unauthenticated users (based on IP address). If you encounter any issues with the app, please wait for a few minutes before trying again.
+
 ## Local Development
 
 ### Prerequisites
@@ -45,10 +49,10 @@ The GitPeek App is a sleek, user-friendly web application designed to provide qu
 ### Steps
 
 1. Clone this repository or download the ZIP file.
-   - `git clone https://github.com/yourusername/thegitpeekapp.git`
+   - `git clone https://github.com/hoangsonww/The-GitPeek-App.git`
 
 2. Navigate to the project directory.
-   - `cd thegitpeekapp`
+   - `cd The-GitPeek-App`
 
 3. Open the `index.html` file in your web browser.
 
