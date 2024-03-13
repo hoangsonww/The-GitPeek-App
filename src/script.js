@@ -11,55 +11,99 @@ getUser("hoangsonww");
 
 async function getUser(username) {
     showLoading();
-    const resp = await fetch(APIURL + username);
-    const respData = await resp.json();
-    if (respData.message === "Not Found" || !respData.name) {
-        displayNotFound();
-        return;
-    }
-    createUserCard(respData);
+    try {
+        const userResponse = await fetch(APIURL + username);
+        if (!userResponse.ok) {
+            throw new Error('User not found');
+        }
+        const userData = await userResponse.json();
+        if (userData.message === "Not Found" || !userData.name) {
+            displayNotFound();
+            return;
+        }
 
-    getRepos(username);
-    hideLoading();
+        const { totalStars, totalForks, totalWatchers } = await getRepositoryStats(username);
+
+        createUserCard(userData, totalStars, totalForks, totalWatchers);
+        getRepos(username);
+    }
+    catch (error) {
+        console.error(error);
+        displayNotFound();
+    }
+    finally {
+        hideLoading();
+    }
+}
+
+async function getRepositoryStats(username) {
+    let page = 1;
+    let stats = { totalStars: 0, totalForks: 0, totalWatchers: 0 };
+    let fetchMore = true;
+
+    while (fetchMore) {
+        const reposResponse = await fetch(`${APIURL + username}/repos?per_page=100&page=${page}`);
+        const repos = await reposResponse.json();
+        repos.forEach(repo => {
+            stats.totalStars += repo.stargazers_count;
+            stats.totalForks += repo.forks_count;
+        });
+
+        if (repos.length < 100) {
+            fetchMore = false;
+        }
+        else {
+            page++;
+        }
+    }
+
+    return stats;
 }
 
 async function getRepos(username) {
-    const resp = await fetch(APIURL + username + "/repos?per_page=100&sort=created");
+    const resp = await fetch(`${APIURL + username}/repos?per_page=100&sort=created`);
     const respData = await resp.json();
-
     addReposToCard(respData);
 }
 
-
-function createUserCard(user) {
+function createUserCard(user, totalStars, totalForks, totalWatchers) {
     let formattedBlogUrl = user.blog;
     if (formattedBlogUrl && !formattedBlogUrl.startsWith('http://') && !formattedBlogUrl.startsWith('https://')) {
         formattedBlogUrl = `https://${formattedBlogUrl}`;
     }
 
+    const hireableStatus = user.hireable ? "Yes" : "No";
+    const gistsUrl = `https://gist.github.com/${user.login}`;
+
     const cardHTML = `
         <div class="card">
             <div>
-                <a href="${user.html_url}" target="_blank">
+                <a href="${user.html_url}" target="_blank" title="Click to view profile">
                     <img class="avatar" src="${user.avatar_url}" alt="${user.name}" />
                 </a> 
             </div>
             <div class="user-info">
-                <h2>${user.name}</h2>
+                <a href="${user.html_url}" target="_blank" style="color: white; text-decoration: none" title="Click to view profile">
+                    <h2>${user.name}</h2>
+                </a>
                 <p>Bio: ${user.bio}</p>
                 <ul class="info">
                     <li style="margin-right: 20px">${user.followers}<strong>Followers</strong></li>
                     <li style="margin-right: 20px">${user.following}<strong>Following</strong></li>
                     <li style="margin-right: 20px">${user.public_repos}<strong>Repos</strong></li>
                     <li style="margin-right: 20px">${user.public_gists}<strong>Gists</strong></li>
+                    <li style="margin-right: 20px">${totalStars}<strong>Stars</strong></li>
+                    <li style="margin-right: 20px">${totalForks}<strong>Forks</strong></li>
                 </ul>
                 <li><strong>Email:</strong> ${user.email || 'Not provided'}</li>
                 <li><strong>Location:</strong> ${user.location || 'Not provided'}</li>
                 <li><strong>Company:</strong> ${user.company || 'Not provided'}</li>
-                <li><strong>Website/Blog:</strong> <a href="${formattedBlogUrl}" target="_blank">${user.blog || 'Not provided'}</a></li>
-                <li><strong>Twitter:</strong> ${user.twitter_username ? `<a href="https://twitter.com/${user.twitter_username}" target="_blank">@${user.twitter_username}</a>` : 'Not provided'}</li>
+                <li><strong>Website/Blog:</strong> <a style="color: white" href="${formattedBlogUrl}" target="_blank">${user.blog || 'Not provided'}</a></li>
+                <li><strong>Twitter:</strong> ${user.twitter_username ? `<a style="color: white" href="https://twitter.com/${user.twitter_username}" target="_blank">@${user.twitter_username}</a>` : 'Not provided'}</li>
                 <li><strong>Joined At:</strong> ${new Date(user.created_at).toLocaleDateString()}</li>
                 <li><strong>Last Updated:</strong> ${new Date(user.updated_at).toLocaleDateString()}</li>
+                <li><strong>Hireable:</strong> ${hireableStatus}</li>
+                <li><strong>Gists:</strong> <a style="color: white" href="${gistsUrl}" target="_blank">View Gists</a></li>
                 <div style="margin-bottom: 10px"></div>
                 <div id="repos"></div>
                 <button onclick="saveToFavorites('${user.login}')">Add to Favorites</button>
@@ -67,9 +111,8 @@ function createUserCard(user) {
         </div>
     `;
 
-    main.innerHTML = cardHTML;
+    document.getElementById('main').innerHTML = cardHTML;
 }
-
 function displayNotFound() {
     const notFoundHTML = `
         <div class="card">
