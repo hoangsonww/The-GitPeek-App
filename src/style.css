@@ -303,21 +303,25 @@ button:hover {
     background-color: #4c2885;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 930px) {
     #chatbotContainer {
         display: none;
     }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 830px) {
     .back-btn {
         padding-top: 20px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 830px) {
     header h1 {
         font-size: 1.5rem;
+    }
+
+    .avatar {
+        margin-left: 30px;
     }
 
     #form {
