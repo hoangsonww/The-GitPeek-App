@@ -86,7 +86,7 @@ function createUserCard(user, totalStars, totalForks, totalWatchers) {
                 <a href="${user.html_url}" target="_blank" style="color: white; text-decoration: none" title="Click to view profile">
                     <h2>${user.name}</h2>
                 </a>
-                <p>Bio: ${user.bio}</p>
+                <p><strong>Bio:</strong> ${user.bio}</p>
                 <ul class="info">
                     <li style="margin-right: 20px">${user.followers}<strong>Followers</strong></li>
                     <li style="margin-right: 20px">${user.following}<strong>Following</strong></li>
@@ -97,14 +97,15 @@ function createUserCard(user, totalStars, totalForks, totalWatchers) {
                 </ul>
                 <li><strong>Email:</strong> ${user.email || 'Not provided'}</li>
                 <li><strong>Location:</strong> ${user.location || 'Not provided'}</li>
-                <li><strong>Company:</strong> ${user.company || 'Not provided'}</li>
-                <li><strong>Website/Blog:</strong> <a style="color: white" href="${formattedBlogUrl}" target="_blank">${user.blog || 'Not provided'}</a></li>
+                <li><strong>Organization:</strong> ${user.company || 'Not provided'}</li>
+                <li><strong>Website/Blog:</strong> <a id="webLink" href="${formattedBlogUrl}" target="_blank">${user.blog || 'Not provided'}</a></li>
                 <li><strong>Twitter:</strong> ${user.twitter_username ? `<a style="color: white" href="https://twitter.com/${user.twitter_username}" target="_blank">@${user.twitter_username}</a>` : 'Not provided'}</li>
                 <li><strong>Joined At:</strong> ${new Date(user.created_at).toLocaleDateString()}</li>
                 <li><strong>Last Updated:</strong> ${new Date(user.updated_at).toLocaleDateString()}</li>
                 <li><strong>Hireable:</strong> ${hireableStatus}</li>
-                <li><strong>Gists:</strong> <a style="color: white" href="${gistsUrl}" target="_blank">View Gists</a></li>
+                <li><strong>Gists:</strong> <a id="webLink1" href="${gistsUrl}" target="_blank">View Gists</a></li>
                 <div style="margin-bottom: 10px"></div>
+                <p><strong>Notable Repositories:</strong></p>
                 <div id="repos"></div>
                 <button onclick="saveToFavorites('${user.login}')">Add to Favorites</button>
             </div>
@@ -128,7 +129,7 @@ function displayNotFound() {
 function addReposToCard(repos) {
     const reposEl = document.getElementById("repos");
 
-    repos.sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 10).forEach((repo) => {
+    repos.sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 14).forEach((repo) => {
         const repoEl = document.createElement("a");
         repoEl.classList.add("repo");
         repoEl.href = repo.html_url;
