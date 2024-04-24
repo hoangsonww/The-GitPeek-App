@@ -315,6 +315,31 @@ button:hover {
     }
 }
 
+#webLink {
+    color: white;
+}
+
+#webLink1 {
+    color: white;
+}
+
+#webLink:hover {
+    color: #b07fff;
+}
+
+#webLink1:hover {
+    color: #b07fff;
+}
+
+.card, #recentUsers, #favoritesContainer {
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.about-btn, .back-btn, button {
+    padding: 0.5rem 1rem;
+}
+
 @media (max-width: 830px) {
     header h1 {
         font-size: 1.5rem;
