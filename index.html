@@ -11,17 +11,18 @@
     <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 <body>
     <header>
         <h1>The GitPeek App</h1>
     </header>
-<form id="form">
-    <div class="search-container">
-        <input type="text" id="search" placeholder="Search for a Github User" />
-        <button type="submit" id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
-        <div id="loadingSpinner" class="spinner" hidden></div>
-    </div>
-</form>
+    <form id="form">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for a Github User" />
+            <button type="submit" id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
+            <div id="loadingSpinner" class="spinner" hidden></div>
+        </div>
+    </form>
 
     <main id="main"></main>
     <div id="recentUsers">Recent Users:</div>
@@ -31,6 +32,6 @@
         <div id="chatbotBody"></div>
         <input id="chatbotInput" type="text" placeholder="Ask me something...">
     </div>
-
 </body>
+
 </html>
