@@ -19,7 +19,8 @@
     </header>
     <form id="form">
         <div class="search-container">
-            <input type="text" id="search" placeholder="Search for a Github User" />
+            <label for="search" hidden>Search for a GitHub User</label>
+            <input type="text" id="search" placeholder="Search for a GitHub User" />
             <button type="submit" id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
             <div id="loadingSpinner" class="spinner" hidden></div>
         </div>
@@ -31,6 +32,7 @@
     <div id="chatbotContainer">
         <div id="chatbotHeader">GitPeek Assistant</div>
         <div id="chatbotBody"></div>
+        <label for="chatbotInput" hidden>Ask me something...</label>
         <input id="chatbotInput" type="text" placeholder="Ask me something...">
     </div>
 </body>
