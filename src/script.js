@@ -190,65 +190,47 @@ form.addEventListener("submit", (e) => {
 
 function elizaResponse(message) {
     const lowerMessage = message.toLowerCase();
-    if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
-        return "Hello! How can I assist you with GitHub profiles today?";
-    } else if (lowerMessage.includes("how are you")) {
-        return "I'm just lines of code, so I don't have feelings, but I'm here and ready to assist you!";
-    } else if (lowerMessage.includes("search")) {
-        return "To find a GitHub user, please type their username in the search box above.";
-    } else if (lowerMessage.includes("thank")) {
-        return "You're always welcome!";
-    } else if (lowerMessage.includes("who are you")) {
-        return "I'm the GitPeek Assistant, designed to make your GitHub profile searching experience smoother.";
-    } else if (lowerMessage.includes("what can you do")) {
-        return "I can guide you on how to use this platform, answer general questions, and provide insights about GitHub profiles.";
-    } else if (lowerMessage.includes("github")) {
-        return "GitHub is a platform for developers to collaborate on code. Interested in someone's profile? Just search above!";
-    } else if (lowerMessage.includes("error") || lowerMessage.includes("problem")) {
-        return "I apologize for the inconvenience. Could you provide more details about the issue?";
-    } else if (lowerMessage.includes("bye") || lowerMessage.includes("goodbye")) {
-        return "Farewell! Don't hesitate to return if you have more questions. Happy coding!";
-    } else if (lowerMessage.includes("help")) {
-        return "Sure, I'm here to help! You can search for a GitHub user using the search bar above or ask me any other questions.";
-    } else if (lowerMessage.includes("joke")) {
-        return "Why did the programmer quit his job? Because he didn't get arrays!";
-    } else if (lowerMessage.includes("repo") || lowerMessage.includes("repository")) {
-        return "Repositories on GitHub contain all of a project's files and each file's revision history. Want to see someone's top repos? Just search for their profile!";
-    } else if (lowerMessage.includes("love")) {
-        return "I'm just a bot, so I don't have feelings. But I appreciate the positive vibes!";
-    } else if (lowerMessage.includes("awesome") || lowerMessage.includes("great")) {
-        return "Thank you for the kind words! How can I further assist you?";
-    } else if (lowerMessage.includes("cool")) {
-        return "Thank you! I'm here to make your experience better.";
-    } else if (lowerMessage.includes("name")) {
-        return "I'm the GitPeek Assistant. And you are?";
-    } else if (lowerMessage.includes("age")) {
-        return "In digital years, I'm quite young. In human years, I was born recently when this app was developed.";
-    } else if (lowerMessage.includes("language") || lowerMessage.includes("programming")) {
-        return "This platform is mainly built with HTML, CSS, and JavaScript. If you're referring to me, I'm scripted in JavaScript!";
-    } else if (lowerMessage.includes("weather")) {
-        return "I'm more of a GitHub expert than a weatherman. Maybe try a weather app?";
-    } else if (lowerMessage.includes("music")) {
-        return "While I can't play music, I can certainly chat about GitHub! Any questions?";
-    } else if (lowerMessage.includes("how do I use this")) {
-        return "Simply enter a GitHub username into the search box, and I'll fetch the user's profile details for you!";
-    } else if (lowerMessage.includes("where are you")) {
-        return "I live in the virtual world of this platform. Always here, always ready to assist!";
-    } else if (lowerMessage.includes("open source")) {
-        return "Yes, GitHub is a platform that champions open-source projects. You can search for any user and see their contributions!";
-    } else if (lowerMessage.includes("your creator")) {
-        return "I was developed by Son Nguyen of this app. He used JavaScript to bring me to life!";
-    } else if (lowerMessage.includes("favorite color")) {
-        return "I don't have preferences like humans do, but I've been designed with a theme of purples and blues.";
-    } else if (lowerMessage.includes("fun fact")) {
-        return "Did you know? The term 'bug' in programming is derived from an actual bug that was found in a computer in the 1940s!";
-    } else if (lowerMessage.includes("coffee or tea")) {
-        return "I don't consume beverages, but I've observed developers enjoy both!";
-    } else if (lowerMessage.includes("tell me more about github")) {
-        return "GitHub is a collaborative platform for developers. It's used for version control and collaboration, allowing multiple people to work on projects simultaneously.";
-    } else {
-        return "Sorry, I didn't catch that. Can you rephrase or ask another question?";
+
+    const responses = [
+        { patterns: ["hello", "hi", "hey"], response: "Hello! How can I assist you with GitHub profiles today?" },
+        { patterns: ["how are you"], response: "I'm just lines of code, so I don't have feelings, but I'm here and ready to assist you!" },
+        { patterns: ["search"], response: "To find a GitHub user, please type their username in the search box above." },
+        { patterns: ["thank"], response: "You're always welcome!" },
+        { patterns: ["who are you"], response: "I'm the GitPeek Assistant, designed to make your GitHub profile searching experience smoother." },
+        { patterns: ["what can you do"], response: "I can guide you on how to use this platform, answer general questions, and provide insights about GitHub profiles." },
+        { patterns: ["github"], response: "GitHub is a platform for developers to collaborate on code. Interested in someone's profile? Just search above!" },
+        { patterns: ["error", "problem"], response: "I apologize for the inconvenience. Could you provide more details about the issue?" },
+        { patterns: ["bye", "goodbye"], response: "Farewell! Don't hesitate to return if you have more questions. Happy coding!" },
+        { patterns: ["help"], response: "Sure, I'm here to help! You can search for a GitHub user using the search bar above or ask me any other questions." },
+        { patterns: ["joke"], response: "Why did the programmer quit his job? Because he didn't get arrays!" },
+        { patterns: ["repo", "repository"], response: "Repositories on GitHub contain all of a project's files and each file's revision history. Want to see someone's top repos? Just search for their profile!" },
+        { patterns: ["love"], response: "I'm just a bot, so I don't have feelings. But I appreciate the positive vibes!" },
+        { patterns: ["awesome", "great"], response: "Thank you for the kind words! How can I further assist you?" },
+        { patterns: ["cool"], response: "Thank you! I'm here to make your experience better." },
+        { patterns: ["name"], response: "I'm the GitPeek Assistant. And you are?" },
+        { patterns: ["age"], response: "In digital years, I'm quite young. In human years, I was born recently when this app was developed." },
+        { patterns: ["language", "programming"], response: "This platform is mainly built with HTML, CSS, and JavaScript. If you're referring to me, I'm scripted in JavaScript!" },
+        { patterns: ["weather"], response: "I'm more of a GitHub expert than a weatherman. Maybe try a weather app?" },
+        { patterns: ["music"], response: "While I can't play music, I can certainly chat about GitHub! Any questions?" },
+        { patterns: ["how do I use this"], response: "Simply enter a GitHub username into the search box, and I'll fetch the user's profile details for you!" },
+        { patterns: ["where are you"], response: "I live in the virtual world of this platform. Always here, always ready to assist!" },
+        { patterns: ["open source"], response: "Yes, GitHub is a platform that champions open-source projects. You can search for any user and see their contributions!" },
+        { patterns: ["your creator"], response: "I was developed by Son Nguyen of this app. He used JavaScript to bring me to life!" },
+        { patterns: ["favorite color"], response: "I don't have preferences like humans do, but I've been designed with a theme of purples and blues." },
+        { patterns: ["fun fact"], response: "Did you know? The term 'bug' in programming is derived from an actual bug that was found in a computer in the 1940s!" },
+        { patterns: ["coffee or tea"], response: "I don't consume beverages, but I've observed developers enjoy both!" },
+        { patterns: ["tell me more about github"], response: "GitHub is a collaborative platform for developers. It's used for version control and collaboration, allowing multiple people to work on projects simultaneously." },
+    ];
+
+    for (const response of responses) {
+        for (const pattern of response.patterns) {
+            if (lowerMessage.includes(pattern)) {
+                return response.response;
+            }
+        }
     }
+
+    return "Sorry, I didn't catch that. Can you rephrase or ask another question?";
 }
 
 const chatbotInput = document.getElementById("chatbotInput");
