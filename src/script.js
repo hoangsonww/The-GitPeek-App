@@ -74,6 +74,9 @@ function createUserCard(user, totalStars, totalForks, totalWatchers) {
 
     const hireableStatus = user.hireable ? "Yes" : "No";
     const gistsUrl = `https://gist.github.com/${user.login}`;
+    const followersUrl = `${user.html_url}?tab=followers`;
+    const followingUrl = `${user.html_url}?tab=following`;
+    const reposUrl = `${user.html_url}?tab=repositories`;
 
     const cardHTML = `
         <div class="card">
@@ -88,10 +91,10 @@ function createUserCard(user, totalStars, totalForks, totalWatchers) {
                 </a>
                 <p><strong>Bio:</strong> ${user.bio}</p>
                 <ul class="info">
-                    <li style="margin-right: 20px">${user.followers}<strong>Followers</strong></li>
-                    <li style="margin-right: 20px">${user.following}<strong>Following</strong></li>
-                    <li style="margin-right: 20px">${user.public_repos}<strong>Repos</strong></li>
-                    <li style="margin-right: 20px">${user.public_gists}<strong>Gists</strong></li>
+                    <a style="text-decoration: none; color: white" href="${followersUrl}" target="_blank"><li style="margin-right: 20px">${user.followers}<strong>Followers</strong></li></a>
+                    <a style="text-decoration: none; color: white" href="${followingUrl}" target="_blank"><li style="margin-right: 20px">${user.following}<strong>Following</strong></li></a>
+                    <a style="text-decoration: none; color: white" href="${reposUrl}" target="_blank"><li style="margin-right: 20px">${user.public_repos}<strong>Repos</strong></li></a>
+                    <a style="text-decoration: none; color: white" href="${gistsUrl}" target="_blank"><li style="margin-right: 20px">${user.public_gists}<strong>Gists</strong></li></a>
                     <li style="margin-right: 20px">${totalStars}<strong>Stars</strong></li>
                     <li style="margin-right: 20px">${totalForks}<strong>Forks</strong></li>
                 </ul>
@@ -119,7 +122,7 @@ function displayNotFound() {
         <div class="card">
             <h2>User not found</h2>
             <p>The GitHub user you searched for does not exist.</p>
-            <button onclick="location.reload();" class="back-btn">Back to Main Page</button>
+            <button onclick="window.location.reload();" class="back-btn">Back to Main Page</button>
         </div>
     `;
 
