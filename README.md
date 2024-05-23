@@ -7,7 +7,7 @@ The GitPeek App is a sleek, user-friendly web application designed to provide qu
 ## User Interface
 
 <p align="center" style="cursor: pointer">
-    <img src="icons/gitPeekUI.png" alt="The GitPeek App Interface" width="100%"/>
+    <img src="icons/ui.png" alt="The GitPeek App Interface" width="100%" style="border-radius: 8px"
 </p>
 
 ## Features
