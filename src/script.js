@@ -117,6 +117,7 @@ function createUserCard(user, totalStars, totalForks, totalWatchers) {
 
     document.getElementById('main').innerHTML = cardHTML;
 }
+
 function displayNotFound() {
     const notFoundHTML = `
         <div class="card">
